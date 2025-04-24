@@ -40,9 +40,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
 ## 📁 Project Structure
-arduino
-Copy
-Edit
+```bash
 📦 daily-nook
 ├── public/
 ├── src/
@@ -55,6 +53,7 @@ Edit
 ├── .eslintrc.js
 ├── vite.config.js
 └── package.json
+```
 📚 Learn More
 React.js Documentation
 
