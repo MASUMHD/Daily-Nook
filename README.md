@@ -26,19 +26,20 @@ npm install
 npm run dev
 Or use your preferred package manager:
 
-bash
-Copy
-Edit
-yarn install && yarn dev
+```bash
+npm run dev
 # or
-pnpm install && pnpm dev
+yarn dev
 # or
-bun install && bun dev
-Then open your browser at:
+pnpm dev
+# or
+bun dev
+```
 
-http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the
+result.
 
-📁 Project Structure
+## 📁 Project Structure
 arduino
 Copy
 Edit
