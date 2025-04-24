@@ -41,7 +41,7 @@ result.
 
 ## 📁 Project Structure
 ```bash
-# 📦 daily-nook
+## 📦 daily-nook
 ├── public/
 ├── src/
 │   ├── assets/
