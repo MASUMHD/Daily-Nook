@@ -39,7 +39,7 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
-## 📁 Project Structure
+📁 Project Structure
 ```bash
 ## 📦 daily-nook
 ├── public/
@@ -54,34 +54,20 @@ result.
 ├── vite.config.js
 └── package.json
 ```
-📚 Learn More
+## 📚 Learn More
 React.js Documentation
 
 Vite Documentation
 
 React Router
 
-🌐 Deployment
+## 🌐 Deployment
 You can deploy this app easily using Vercel, Netlify, or any static hosting provider.
 
-📦 Deploy on Vercel
+## 📦 Deploy on Vercel
 
 For traditional React apps, you can also follow: React Deployment Guide
 
-🙌 Contributing
-If you'd like to contribute, fork the repository and make your changes! PRs are welcome.
-
-📄 License
-This project is open-source and available under the MIT License.
-
-💚 Made with love for organic living — Daily Nook
-yaml
-Copy
-Edit
-
----
-
-Let me know if you want to include **screenshots**, **live demo link**, or **API instructions** too.
 
 
 
