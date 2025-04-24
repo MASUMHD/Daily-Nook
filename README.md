@@ -26,7 +26,7 @@ npm install
 npm run dev
 Or use your preferred package manager:
 
-```bash
+
 npm run dev
 # or
 yarn dev
