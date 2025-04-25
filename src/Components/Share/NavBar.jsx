@@ -46,6 +46,11 @@ const NavBar = () => {
           <IoSearch size={25} />
         </div>
 
+        <div>
+          hello kdnvbsnsvnisvslnk
+          hhsdsufhhfjshfjshf
+        </div>
+
         {/* Right Side */}
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-2">
