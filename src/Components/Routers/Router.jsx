@@ -6,7 +6,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <h1>404</h1>,
+    errorElement: <h1 className="text-8xl mt-56 font-bold space-x-3 text-red-600 text-center "><span>4</span> <span>0</span> <span>4 </span></h1>,
     children: [
       {
         path: "/",
