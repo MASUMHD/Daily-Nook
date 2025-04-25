@@ -6,7 +6,7 @@ const NavSearch = () => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <div className="flex items-center bg-white w-full md:w-96 px-4 py-2 rounded-lg relative">
+    <div className="flex items-center bg-white w-full  lg:w-96 px-4 py-2 rounded-lg relative">
       <input
         type="text"
         placeholder="Search for products, categories or brands..."
