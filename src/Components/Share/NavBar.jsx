@@ -11,7 +11,6 @@ const NavBar = () => {
   return (
     <main className="sticky top-0 z-50 bg-[#72FBA4]">
       <header className="flex justify-between items-center p-3 md:px-6 lg:px-28">
-        {/* Left Side */}
         <div className="flex items-center space-x-2">
           <img
             src="https://i.postimg.cc/9MkMgnr3/g10.png"
@@ -85,24 +84,23 @@ const NavBar = () => {
         <div className="md:hidden bg-[#72FBA4] px-4 pb-4 space-y-4">
           {/* Search (Mobile) */}
           <div className="flex items-center bg-white px-3 py-2 rounded-lg relative">
-  <input
-    type="text"
-    placeholder="Search products..."
-    value={searchText}
-    onChange={(e) => setSearchText(e.target.value)}
-    className="w-full outline-none pr-6"
-  />
-  {searchText ? (
-    <FaTimes
-      size={16}
-      className="absolute right-3 text-gray-500 cursor-pointer"
-      onClick={() => setSearchText("")}
-    />
-  ) : (
-    <IoSearch size={18} className="absolute right-3 text-gray-600" />
-  )}
-</div>
-
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              className="w-full outline-none pr-6"
+            />
+            {searchText ? (
+              <FaTimes
+                size={16}
+                className="absolute right-3 text-gray-500 cursor-pointer"
+                onClick={() => setSearchText("")}
+              />
+            ) : (
+              <IoSearch size={18} className="absolute right-3 text-gray-600" />
+            )}
+          </div>
 
           {/* Account */}
           <div className="flex items-center space-x-2">
