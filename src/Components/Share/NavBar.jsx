@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { FaRegHeart, FaRegUser, FaBars, FaTimes } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
 import { SlLocationPin } from "react-icons/sl";
 import { TiShoppingCart } from "react-icons/ti";
+import NavSearch from "../NavBar/NavSearch";
 
 const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
 
   return (
     <main className="sticky top-0 z-50 bg-[#72FBA4]">
-      <header className="flex justify-between items-center p-3 md:px-6 lg:px-28">
+      <header className="flex justify-between items-center p-4 md:px-6 lg:px-28">
         <div className="flex items-center space-x-2">
           <img
             src="https://i.postimg.cc/9MkMgnr3/g10.png"
@@ -28,22 +27,8 @@ const NavBar = () => {
         </div>
 
         {/* Search Bar (Desktop) */}
-        <div className="hidden md:flex items-center bg-white w-72 md:w-96 px-3 py-2 rounded-lg relative">
-          <input
-            type="text"
-            placeholder="Search for products, categories or brands..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className="w-full outline-none"
-          />
-          {searchText && (
-            <FaTimes
-              size={18}
-              className="absolute right-8 text-gray-500 cursor-pointer"
-              onClick={() => setSearchText("")}
-            />
-          )}
-          <IoSearch size={25} />
+        <div className="hidden md:flex">
+          <NavSearch/>
         </div>
 
         {/* Right Side */}
@@ -83,23 +68,8 @@ const NavBar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-[#72FBA4] px-4 pb-4 space-y-4">
           {/* Search (Mobile) */}
-          <div className="flex items-center bg-white px-3 py-2 rounded-lg relative">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              className="w-full outline-none pr-6"
-            />
-            {searchText ? (
-              <FaTimes
-                size={16}
-                className="absolute right-3 text-gray-500 cursor-pointer"
-                onClick={() => setSearchText("")}
-              />
-            ) : (
-              <IoSearch size={18} className="absolute right-3 text-gray-600" />
-            )}
+          <div>
+            <NavSearch/>
           </div>
 
           {/* Account */}
