@@ -9,7 +9,7 @@ const NavSearch = () => {
     <div className="flex items-center bg-white w-full  lg:w-96 px-4 py-2 rounded-lg relative">
       <input
         type="text"
-        placeholder="Search for products, categories or brands..."
+        placeholder="Search for products..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         className="w-full outline-none"

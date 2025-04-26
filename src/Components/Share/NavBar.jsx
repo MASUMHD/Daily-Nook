@@ -76,7 +76,7 @@ const NavBar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5 fixed top-18 left-0 w-full">
+          <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5 ">
             {/* Nav Menus */}
             <Link to="/" className="flex items-center space-x-2 hover:text-[#634C9F]">
             <MdHome size={20} />
@@ -92,8 +92,6 @@ const NavBar = () => {
             <GiFruitBowl size={20} />
               <span className="text-sm font-semibold">Fruits & Vegetables</span>
             </Link>
-
-          {/* todo not import icons */}
 
             <Link to="/blog" className="flex items-center space-x-2 hover:text-[#634C9F]">
             <FaBlog size={20} />
