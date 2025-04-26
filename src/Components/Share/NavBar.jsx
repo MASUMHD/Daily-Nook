@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom"; 
 import { FaRegHeart, FaRegUser, FaBars, FaTimes, FaBlog } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { TiShoppingCart } from "react-icons/ti";
@@ -23,7 +23,9 @@ const NavBar = () => {
               alt="logo"
               className="w-12 h-10 md:w-12 md:h-10 object-cover"
             />
-            <h1 className="text-xl md:text-3xl font-bold">DailyNook</h1>
+            <Link to="/">
+              <h1 className="text-xl md:text-3xl font-bold">DailyNook</h1>
+            </Link>
 
             <div className="hidden md:flex items-center space-x-1 ml-4">
               <SlLocationPin size={25} />
@@ -78,42 +80,61 @@ const NavBar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5 ">
             {/* Nav Menus */}
-            <Link to="/" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <MdHome size={20} />
+            <Link
+              to="/"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <MdHome size={20} />
               <span className="text-sm font-semibold">Home</span>
             </Link>
 
-            <Link to="/products" className="flex items-center space-x-2 hover:text-[#634C9F] ">
-            <BsShop size={20} />
+            <Link
+              to="/products"
+              className="flex items-center space-x-2 hover:text-[#634C9F] "
+            >
+              <BsShop size={20} />
               <span className="text-sm font-semibold">Shop</span>
             </Link>
 
-            <Link to="/fruits-vegetables" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <GiFruitBowl size={20} />
+            <Link
+              to="/fruits-vegetables"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <GiFruitBowl size={20} />
               <span className="text-sm font-semibold">Fruits & Vegetables</span>
             </Link>
 
-            <Link to="/blog" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <FaBlog size={20} />
+            <Link
+              to="/blog"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <FaBlog size={20} />
               <span className="text-sm font-semibold">Blog</span>
             </Link>
 
-            <Link to="/contact" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <MdOutlineContactMail size={20} />
+            <Link
+              to="/contact"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <MdOutlineContactMail size={20} />
               <span className="text-sm font-semibold">Contact</span>
             </Link>
 
-            <Link to="/trending-products" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <IoMdTrendingUp size={20} />
+            <Link
+              to="/trending-products"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <IoMdTrendingUp size={20} />
               <span className="text-sm font-semibold">Trending Products</span>
             </Link>
 
-            <Link to="/almost-finished" className="flex items-center space-x-2 hover:text-[#634C9F]">
-            <GiFinishLine size={20} />
+            <Link
+              to="/almost-finished"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <GiFinishLine size={20} />
               <span className="text-sm font-semibold">Almost Finished</span>
             </Link>
-
-            
 
             {/* Search (Mobile) */}
             <div>
@@ -121,19 +142,28 @@ const NavBar = () => {
             </div>
 
             {/* Account */}
-            <Link to="/account" className="flex items-center space-x-2 hover:text-[#634C9F]">
+            <Link
+              to="/account"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
               <FaRegUser size={20} />
               <span className="text-sm font-semibold">Account</span>
             </Link>
 
             {/* Favorites */}
-            <Link to="/wishlist" className="flex items-center space-x-2 hover:text-[#634C9F]">
+            <Link
+              to="/wishlist"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
               <FaRegHeart size={20} />
               <span className="text-sm font-semibold">Wishlist (0)</span>
             </Link>
 
             {/* Cart */}
-            <Link to="/cart" className="flex items-center space-x-2 hover:text-[#634C9F]">
+            <Link
+              to="/cart"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
               <TiShoppingCart size={20} />
               <span className="text-sm font-semibold">Cart (0)</span>
             </Link>
