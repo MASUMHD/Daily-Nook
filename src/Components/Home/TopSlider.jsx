@@ -58,7 +58,7 @@ const TopSlider = () => {
           className="flex flex-col-reverse md:flex-row items-center bg-cover bg-center bg-no-repeat p-6 md:p-10 rounded-none md:rounded-lg"
           style={{
             backgroundImage:
-              "url('https://t4.ftcdn.net/jpg/08/24/34/97/360_F_824349716_kKkZptLsfW4yG4fpwLkDS0HpoeTqI9z3.jpg')",
+              "url('https://i.postimg.cc/SK2pp59Z/upscalemedia-transformed-1.jpg')",
           }}
         >
           <div className="w-full  space-y-5">
@@ -96,7 +96,7 @@ const TopSlider = () => {
           className="flex flex-col-reverse md:flex-row items-center bg-cover bg-center bg-no-repeat p-6 md:p-10 rounded-none md:rounded-lg"
           style={{
             backgroundImage:
-              "url('https://www.shutterstock.com/image-photo/chinese-food-traditional-cuisine-dishes-260nw-2221271407.jpg')",
+              "url('https://i.postimg.cc/tgdPT9jd/upscalemedia-transformed-2.jpg')",
           }}
         >
           <div className="w-full  space-y-5">
@@ -128,6 +128,7 @@ const TopSlider = () => {
         </div>
       </SwiperSlide>
     </Swiper>
+  
   );
 };
 

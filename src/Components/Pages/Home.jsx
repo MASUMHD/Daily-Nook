@@ -1,5 +1,6 @@
 
 import AllCategories from "../Home/AllCategories";
+import ButtomSlider from "../Home/ButtomSlider";
 import TopSlider from "../Home/TopSlider";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         {/* Main Content */}
         <div className="col-span-5 lg:col-span-4">
           <TopSlider />
+          <ButtomSlider />
         </div>
       </div>
     </main>
