@@ -1,16 +1,18 @@
+
 import AllCategories from "../Home/AllCategories";
 import TopSlider from "../Home/TopSlider";
 
 const Home = () => {
   return (
-    <main className="p-4 md:px-6 lg:px-28">
-      <div className="grid lg:grid-cols-[250px_1fr] gap-4">
-        {/* Sidebar - only show on large screens */}
-        <div className="hidden lg:block">
+    <main className="p-0 md:p-4 md:px-6 lg:px-28">
+      <div className="grid grid-cols-5 gap-4">
+        {/* Sidebar */}
+        <div className="col-span-1 hidden lg:block">
           <AllCategories />
         </div>
 
-        <div className="">
+        {/* Main Content */}
+        <div className="col-span-5 lg:col-span-4">
           <TopSlider />
         </div>
       </div>
