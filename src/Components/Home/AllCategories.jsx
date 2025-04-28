@@ -32,7 +32,7 @@ const categories = [
 
 const AllCategories = () => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-xl w-full">
+    <div className="bg-white rounded-lg overflow-hidden shadow-md w-full">
       {/* Header */}
       <div className="flex items-center gap-3 p-3 bg-green-100 font-bold text-[#030712]">
       <RiGalleryView2 size={25} />

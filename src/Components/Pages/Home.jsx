@@ -2,6 +2,7 @@
 import AllCategories from "../Home/AllCategories";
 import ButtomSlider from "../Home/ButtomSlider";
 import TopSlider from "../Home/TopSlider";
+import WeeklySlider from "../Home/WeeklySlider";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
           <ButtomSlider />
         </div>
       </div>
+      <WeeklySlider/>
     </main>
   );
 };
