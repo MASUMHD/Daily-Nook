@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { FaRegHeart, FaRegUser, FaBars, FaTimes, FaBlog } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { TiShoppingCart } from "react-icons/ti";
 import NavSearch from "../NavBar/NavSearch";
 import NavMenus from "../NavBar/NavMenus";
-import { MdHome, MdOutlineContactMail } from "react-icons/md";
+import {
+  MdHome,
+  MdOutlineContactMail,
+  MdOutlineDashboard,
+} from "react-icons/md";
 import { BsShop } from "react-icons/bs";
 import { GiFinishLine, GiFruitBowl } from "react-icons/gi";
 import { IoMdTrendingUp } from "react-icons/io";
@@ -51,9 +55,20 @@ const NavBar = () => {
               </p>
             </Link>
 
+            {/* Dashboard */}
+            <Link
+              to="/dashboard"
+              className="relative group flex items-center justify-center"
+            >
+              <MdOutlineDashboard size={24} className="group-hover:text-[#634C9F]" />
+              <span className="absolute bottom-full  opacity-0 group-hover:opacity-100 transition-opacity duration-200  text-sm font-bold">
+                Dashboard
+              </span>
+            </Link>
+
             {/* Wishlist */}
             <Link to="/wishlist" className="relative">
-              <FaRegHeart size={24} />
+              <FaRegHeart size={24}  />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                 0
               </span>
@@ -148,6 +163,15 @@ const NavBar = () => {
             >
               <FaRegUser size={20} />
               <span className="text-sm font-semibold">Account</span>
+            </Link>
+
+            {/* Dashboard */}
+            <Link
+              to="/dashboard"
+              className="flex items-center space-x-2 hover:text-[#634C9F]"
+            >
+              <MdOutlineDashboard size={20} />
+              <span className="text-sm font-semibold">Dashboard</span>
             </Link>
 
             {/* Favorites */}
