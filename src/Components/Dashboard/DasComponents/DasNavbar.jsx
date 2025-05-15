@@ -42,7 +42,7 @@ const DasNavbar = ({ toggleSidebar }) => {
         </div>
         <Link
           to="/dashboard/add-product"
-          className="hidden md:flex items-center bg-green-500 text-white px-2 md:px-4 py-2 rounded-md"
+          className="hidden md:flex items-center bg-green-500 text-white px-2 md:px-3 py-2 rounded-md"
         >
           <FiPlus size={18} className="mr-2" /> <span className="">Add Product</span>
         </Link>

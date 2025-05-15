@@ -1,14 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  FiGrid, FiClipboard, FiTruck, FiUser, FiUsers, FiFileText, FiX
+  FiGrid,
+  FiClipboard,
+  FiTruck,
+  FiUser,
+  FiUsers,
+  FiFileText,
+  FiMessageSquare,
+  FiCheckCircle,
+  FiUserCheck,
+  FiLock,
+  FiSettings
 } from 'react-icons/fi';
 import { LiaClipboardListSolid } from 'react-icons/lia';
+import { BsDot } from 'react-icons/bs';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const linkClass = ({ isActive }) =>
-    `flex items-center px-4 py-2 space-x-3 ${
-      isActive ? 'bg-green-500 text-white rounded-full' : 'text-black hover:bg-gray-100 rounded-md'
+    `flex items-center px-4 py-2 space-x-3 transition-all duration-200 ${
+      isActive
+        ? 'bg-green-500 text-white rounded-full'
+        : 'text-black hover:bg-gray-100 rounded-md'
     }`;
 
   return (
@@ -20,10 +33,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Close Icon for small devices */}
       <div className="flex justify-end lg:hidden">
         <button onClick={toggleSidebar} className="text-xl text-gray-700">
-          <FiX />
+          ✕
         </button>
       </div>
 
+      {/* User Info */}
       <div className="text-center mb-6 mt-2">
         <img
           src="https://i.pravatar.cc/100"
@@ -34,6 +48,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <p className="text-sm text-gray-500">Sales Manager</p>
       </div>
 
+     <div className="h-[calc(100vh-40px)] overflow-y-auto pr-1 pb-48  md:pb-40">
+       {/* Main Navigation */}
       <ul className="space-y-4">
         <li>
           <NavLink to="/dashboard" end className={linkClass}>
@@ -62,10 +78,76 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </li>
         <li>
           <NavLink to="/dashboard/invoices" className={linkClass}>
-            <FiFileText  size={21} /> <span>Invoices</span>
+            <FiFileText size={21} /> <span>Invoices</span>
           </NavLink>
         </li>
       </ul>
+
+      {/* Apps Section */}
+      <div className='flex items-center space-x-1 mt-6 text-gray-600'>
+        <BsDot size={20} />
+        <p>Apps</p>
+      </div>
+
+      <ul className="space-y-4 mt-4">
+        <li className="relative">
+          <NavLink to="/dashboard/chats" className={linkClass}>
+            <FiMessageSquare size={21} /> <span>Chats</span>
+          </NavLink>
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 bg-green-500 text-white text-xs px-2 rounded-full">2</span>
+        </li>
+        <li>
+          <NavLink to="/dashboard/email" className={linkClass}>
+            <FiClipboard size={21} /> <span>Email</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/todo" className={linkClass}>
+            <FiCheckCircle size={21} /> <span>Todo App</span>
+          </NavLink>
+        </li>
+      </ul>
+
+      {/* Pages Section */}
+      <div className='flex items-center space-x-1 mt-6 text-gray-600'>
+        <BsDot size={20} />
+        <p>Pages</p>
+      </div>
+      
+      <ul className="space-y-4 mt-4">
+        <li>
+          <NavLink to="/dashboard/profile" className={linkClass}>
+            <FiUserCheck size={21} /> <span>Profile</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/users" className={linkClass}>
+            <FiUsers size={21} /> <span>Users</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/auth" className={linkClass}>
+            <FiLock size={21} /> <span>Authentication</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/errors" className={linkClass}>
+            <FiFileText size={21} /> <span>Error Pages</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/settings" className={linkClass}>
+            <FiSettings size={21} /> <span>Settings</span>
+          </NavLink>
+        </li>
+        <li className="relative">
+          <NavLink to="/dashboard/pricing" className={linkClass}>
+            <FiFileText size={21} /> <span>Pricing Table</span>
+          </NavLink>
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 bg-green-500 text-white text-xs px-2 rounded-full">New</span>
+        </li>
+      </ul>
+     </div>
     </div>
   );
 };
