@@ -1,15 +1,12 @@
 import {
-  FaAppStoreIos,
-  FaEnvelope,
   FaFacebookF,
-  FaGooglePlay,
   FaInstagram,
   FaLinkedinIn,
-  FaPhoneAlt,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdEmail, MdOutlineMail } from "react-icons/md";
+
 import Swal from "sweetalert2";
 
 const Footer = () => {
@@ -61,11 +58,13 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex items-center  gap-5 text-sm mt-6">
               <MdOutlineMail size={30} className="text-[#111827]" />
               <div>
-                <span className="text-[#6B7280]">Need help with your order?</span>
+                <span className="text-[#6B7280]">
+                  Need help with your order?
+                </span>
                 <div className="text-base font-bold text-gray-900 ">
                   dailynook@gmail.com
                 </div>
@@ -74,7 +73,7 @@ const Footer = () => {
           </div>
 
           {/* Make Money with Us */}
-          <div >
+          <div>
             <h2 className="font-bold text-lg mb-4">Make Money with Us</h2>
             <ul className="space-y-2 text-sm text-[#4B5563]">
               <li>Sell on Grogin</li>
@@ -121,32 +120,96 @@ const Footer = () => {
           <div>
             <h2 className="font-bold text-lg mb-4">Download our app</h2>
             <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3">
-                <FaGooglePlay className="text-3xl" />
-                <div className="text-sm">
-                  <div>Download App Get</div>
+              <div className="items-center gap-3">
+                <div className="w-2/3">
+                  <img
+                    src="https://i.postimg.cc/Kj8wsrMn/1506.png"
+                    className="w-full h-full object-cover "
+                    alt=""
+                  />
+                </div>
+                <div className="text-sm mt-1">
+                  <div className="text-[#4B5563]">Download App Get</div>
                   <div className="font-bold">-10% Discount</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <FaAppStoreIos className="text-3xl" />
-                <div className="text-sm">
-                  <div>Download App Get</div>
+              <div className="items-center  gap-3">
+                <div className="w-2/3">
+                  <img
+                    src="https://i.postimg.cc/6QhHJ4wz/1507.png"
+                    className="w-full h-full object-cover "
+                    alt=""
+                  />
+                </div>
+                <div className="text-sm mt-1">
+                  <div className="text-[#4B5563]">Download App Get</div>
                   <div className="font-bold">-20% Discount</div>
                 </div>
               </div>
             </div>
 
-            <div className="text-sm mb-2">Follow us on social media:</div>
-            <div className="flex items-center gap-4 text-gray-600 text-xl">
-              <FaFacebookF className="hover:text-blue-600 cursor-pointer" />
-              <FaXTwitter className="hover:text-black cursor-pointer" />
-              <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-              <FaLinkedinIn className="hover:text-blue-700 cursor-pointer" />
+            <div className="text-lg mb-2 text-[#4B5563]">
+              Follow us on social media:
+            </div>
+            <div className="flex items-center  gap-6 text-gray-600 text-xl">
+              <FaFacebookF
+                size={25}
+                className="text-blue-600 cursor-pointer hover:text-[#634C9F] "
+              />
+              <FaXTwitter
+                size={25}
+                className="text-black cursor-pointer hover:text-[#634C9F]"
+              />
+              <FaInstagram
+                size={25}
+                className="text-pink-500 cursor-pointer hover:text-[#634C9F]"
+              />
+              <FaLinkedinIn
+                size={25}
+                className="text-blue-700 cursor-pointer hover:text-[#634C9F]"
+              />
             </div>
           </div>
         </div>
       </footer>
+
+      <div>
+        <p className="text-center text-base py-0 md:py-2 text-[#4B5563] p-5 md:p-0">
+          Copyright {new Date().getFullYear()} &copy; Jinstore WooCommerce
+          WordPress Theme. All right reserved. Powered by{" "}
+          <span className="text-[#5735ad] font-semibold">
+            BlackRise Themes.
+          </span>
+        </p>
+         {/* Payment Icons */}
+      <div className="flex flex-wrap items-center justify-center gap-2 md:gap-6 mb-6 p-2 md:p-0">
+        <img
+          src="https://purepng.com/public/uploads/large/purepng.com-visa-logologobrand-logoiconslogos-251519938794uqvcz.png"
+          alt="Visa"
+          className="w-14 h-auto object-contain"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_FE3SJM8any5aXGXHTkMAwJil2ZWDCiUvLg&s"
+          alt="Mastercard"
+          className="w-12 h-auto object-contain"
+        />
+        <img
+          src="https://1000logos.net/wp-content/uploads/2017/05/Paypal-Logo-2022.png"
+          alt="PayPal"
+          className="w-20 h-auto object-contain"
+        />
+        <img
+          src="https://cdn3.iconfinder.com/data/icons/payment-method-1/64/_Skrill-512.png"
+          alt="Skrill"
+          className="w-14 h-auto object-contain"
+        />
+        <img
+          src="https://logolook.net/wp-content/uploads/2022/06/Klarna-Emblem.png"
+          alt="Klarna"
+          className="w-16 h-auto object-contain"
+        />
+      </div>
+      </div>
     </div>
   );
 };
