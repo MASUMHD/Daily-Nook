@@ -13,7 +13,7 @@ const WeeklySlider = () => {
       loop={true}
       slidesPerView={3}
       spaceBetween={20}
-      className="my-10"
+      className="mt-10"
       breakpoints={{
         0: {
           slidesPerView: 1,

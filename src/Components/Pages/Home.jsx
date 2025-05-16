@@ -1,6 +1,8 @@
 
 import AllCategories from "../Home/AllCategories";
 import ButtomSlider from "../Home/ButtomSlider";
+import FruitItem from "../Home/FruitItem";
+import NewArrivals from "../Home/NewArrivals";
 import TopSlider from "../Home/TopSlider";
 import WeeklySlider from "../Home/WeeklySlider";
 
@@ -20,6 +22,10 @@ const Home = () => {
         </div>
       </div>
       <WeeklySlider/>
+      <div className="p-4 md:p-0">
+        <NewArrivals/>
+        <FruitItem/>
+      </div>
     </main>
   );
 };
