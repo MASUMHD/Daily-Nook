@@ -1,6 +1,14 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
+import useProducts from "../Hooks/useProducts";
+import Card from "../Share/Card";
 
 const FruitItem = () => {
+  const { products, isLoading, isError, error } = useProducts();
+
+  const fruitProducts = products.filter(
+    (product) => product.category?.toLowerCase() === "fruits"
+  );
+
   return (
     <main className="mt-2 md:mt-6">
       <div className="flex items-center justify-between">
@@ -17,6 +25,18 @@ const FruitItem = () => {
             <span>View All</span> <IoIosArrowRoundForward size={25} />
           </button>
         </div>
+      </div>
+
+      {/* Loading & Error */}
+      {isLoading && <p className="text-center mt-5">Loading products...</p>}
+      {isError && (
+        <p className="text-center text-red-500 mt-5">Error: {error.message}</p>
+      )}
+
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+        {fruitProducts.map((product) => (
+          <Card key={product._id} product={product} />
+        ))}
       </div>
     </main>
   );
