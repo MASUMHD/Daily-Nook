@@ -1,6 +1,7 @@
 
 import AllCategories from "../Home/AllCategories";
 import ButtomSlider from "../Home/ButtomSlider";
+import Drinks from "../Home/Drinks";
 import FeaturedProducts from "../Home/FeaturedProducts";
 import FruitItem from "../Home/FruitItem";
 import NewArrivals from "../Home/NewArrivals";
@@ -26,6 +27,7 @@ const Home = () => {
       <div className="p-4 md:p-0">
         <NewArrivals/>
         <FruitItem/>
+        <Drinks/>
         <FeaturedProducts/>
       </div>
     </main>
