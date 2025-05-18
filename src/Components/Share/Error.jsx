@@ -14,17 +14,17 @@ export default function FourOhFour() {
   }, []);
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 ">
       <Lottie
         animationData={errorAnimation}
         style={{ width: size, height: size }}
         loop
       />
 
-      <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-slate-800 dark:text-white mt-6">
+      <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mt-6">
         404
       </h1>
-      <p className="mt-2 md:mt-3 text-lg md:text-xl text-center text-slate-600 dark:text-slate-300 max-w-md">
+      <p className="mt-2 md:mt-3 text-lg md:text-xl text-center  max-w-md">
         Oops! The page you’re looking for doesn’t exist or was moved.
       </p>
 
