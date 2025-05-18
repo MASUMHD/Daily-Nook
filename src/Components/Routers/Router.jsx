@@ -8,16 +8,13 @@ import DasHome from "../Dashboard/DasComponents/DasHome";
 import DasProducts from "../Dashboard/DasComponents/DasProducts";
 import LogIn from "../Share/LogIn";
 import Registration from "../Share/Registration";
+import Error from "../Share/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: (
-      <h1 className="text-8xl mt-56 font-bold space-x-3 text-red-600 text-center ">
-        <span>4</span> <span>0</span> <span>4 </span>
-      </h1>
-    ),
+    errorElement: <Error />,
     children: [
       {
         path: "/",
