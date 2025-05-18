@@ -6,6 +6,8 @@ import Blog from "../Pages/Blog";
 import MainDashboard from "../Dashboard/MainDashboard";
 import DasHome from "../Dashboard/DasComponents/DasHome";
 import DasProducts from "../Dashboard/DasComponents/DasProducts";
+import LogIn from "../Share/LogIn";
+import Registration from "../Share/Registration";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ export const router = createBrowserRouter([
         path: "/blog",
         element: <Blog />,
       },
+      {
+        path: "/login",
+        element: <LogIn />,
+      },
+      {
+        path: "/registration",
+        element: <Registration/>
+      }
     ],
   },
   {

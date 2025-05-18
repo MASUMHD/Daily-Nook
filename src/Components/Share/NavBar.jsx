@@ -47,7 +47,7 @@ const NavBar = () => {
           {/* Right Side menu (Desktop) */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Account */}
-            <Link to="/account" className="flex items-center space-x-2">
+            <Link to="/login" className="flex items-center space-x-2 hover:text-[#634C9F]">
               <FaRegUser size={24} />
               <p className="text-sm">
                 Sign In <br />
