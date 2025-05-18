@@ -1,6 +1,7 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
 import useProducts from "../Hooks/useProducts";
 import Card from "../Share/Card";
+import Loading from "../Share/Loading";
 
 const FruitItem = () => {
   const { products, isLoading, isError, error } = useProducts();
@@ -28,7 +29,11 @@ const FruitItem = () => {
       </div>
 
       {/* Loading & Error */}
-      {isLoading && <p className="text-center mt-5">Loading products...</p>}
+      {isLoading && (
+        <p className="text-center mt-5">
+          <Loading />
+        </p>
+      )}
       {isError && (
         <p className="text-center text-red-500 mt-5">Error: {error.message}</p>
       )}
