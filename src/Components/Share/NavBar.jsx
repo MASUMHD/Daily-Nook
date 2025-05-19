@@ -158,7 +158,7 @@ const NavBar = () => {
 
             {/* Account */}
             <Link
-              to="/account"
+              to="/login"
               className="flex items-center space-x-2 hover:text-[#634C9F]"
             >
               <FaRegUser size={20} />
