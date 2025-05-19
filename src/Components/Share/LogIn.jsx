@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
@@ -11,7 +12,7 @@ const LogIn = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // TODO: swap for your auth logic
+    toast.success("Login successful");
     console.log(data);
     reset();
   };
