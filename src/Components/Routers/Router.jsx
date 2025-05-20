@@ -9,6 +9,7 @@ import DasProducts from "../Dashboard/DasComponents/DasProducts";
 import LogIn from "../Share/LogIn";
 import Registration from "../Share/Registration";
 import Error from "../Share/Error";
+import AddProducts from "../Dashboard/DasComponents/AddProducts";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
         path: "/dashboard/products",
         element: <DasProducts />,
       },
+      {
+        path: "/dashboard/add-products",
+        element: <AddProducts />,
+      }
     ],
   },
 ]);
