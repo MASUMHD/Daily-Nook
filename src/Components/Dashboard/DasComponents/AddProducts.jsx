@@ -2,6 +2,12 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import {  MdOutlineAddPhotoAlternate } from "react-icons/md";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import axios from "axios";
+import Swal from "sweetalert2";
+
+const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const AddProducts = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -17,6 +23,7 @@ const AddProducts = () => {
   const [newCategory, setNewCategory] = useState("");
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([null, null, null]);
+  const axiosPublic = useAxiosPublic();
 
   const handleAddCategory = () => {
     if (newCategory.trim() && !categories.includes(newCategory.trim())) {
@@ -26,10 +33,49 @@ const AddProducts = () => {
     setShowCategoryModal(false);
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
+ const onSubmit = async (data) => {
+  try {
+    const imageFields = [data.image1[0], data.image2[0], data.image3[0]];
+    const imageUrls = [];
+
+    for (let imageFile of imageFields) {
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      const response = await axios.post(img_hosting_api, formData);
+
+      if (response.data && response.data.data && response.data.data.url) {
+        imageUrls.push(response.data.data.url);
+      } else {
+        throw new Error("Image upload failed");
+      }
+    }
+
+    const productData = {
+      productName: data.productName,
+      category: data.category,
+      quality: data.quality,
+      date: data.date,
+      price: data.price,
+      quantity: data.quantity,
+      discount: data.discount,
+      rating: data.rating,
+      description: data.description,
+      images: imageUrls, // array of uploaded image URLs
+    };
+
+    const result = await axiosPublic.post("/products", productData);
+
+    if (result.status === 200 || result.status === 201) {
+      Swal.fire("Success", "Product added successfully!", "success");
+      reset();
+      setImagePreviews([null, null, null]); // Reset image previews
+    }
+  } catch (error) {
+    console.error("Error adding product:", error);
+    Swal.fire("Error", "Failed to add the product. Please try again.", "error");
+  }
+};
+
 
   return (
     <div className="max-w-5xl mx-auto mt-16 ">
@@ -160,7 +206,7 @@ const AddProducts = () => {
             <div key={i}>
               <label className="block font-semibold mb-1">Image {i}</label>
               <div className="w-full border-2 border-dashed border-gray-300 rounded-lg h-32 flex flex-col items-center justify-center text-gray-500 cursor-pointer hover:bg-gray-100 transition relative overflow-hidden ">
-                <label className="flex flex-col items-center justify-center w-full h-full cursor-pointer ">
+                <label className="flex flex-col items-center justify-center w-full h-full cursor-pointer p-2">
                   {imagePreviews[index] ? (
                     <img
                       src={imagePreviews[index]}

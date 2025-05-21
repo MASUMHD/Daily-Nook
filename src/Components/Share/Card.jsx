@@ -8,7 +8,7 @@ const Card = ({ product }) => {
     discount,
     rating,
     description,
-    firstImage = product["first-image"],
+    firstImage = product["first-image"] || product.images?.[0],
     oldPrice = (price * 1.2).toFixed(2),
   } = product;
 
