@@ -1,20 +1,49 @@
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
-    
+  const [Error, setError] = useState("");
+  const { loginUser } = useAuth();
+
+  // navigation system
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    toast.success("Login successful");
-    console.log(data);
-    reset();
+    const { email, password } = data;
+
+    loginUser(email, password)
+      .then((result) => {
+        if (result.user) {
+          navigate(from);
+        }
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Password or Email is not correct. Please register first!",
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+        setError(error.message);
+      });
   };
 
   return (
@@ -35,45 +64,54 @@ const LogIn = () => {
           </Link>
         </div>
 
-        <p className="mb-6 text-center text-sm text-neutral-600 md:text-base ">
+        <p className="mb-6 text-center text-sm text-neutral-600 md:text-base">
           If you have an account, sign in with your <br /> username or email address.
         </p>
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* Email */}
           <div>
             <label
-              htmlFor="user"
+              htmlFor="email"
               className="mb-1 block text-sm font-medium text-neutral-700"
             >
-              Username or email address
-              <span className="ml-0.5 text-red-600">*</span>
+              Email Address<span className="ml-0.5 text-red-600">*</span>
             </label>
             <input
-              id="user"
+              id="email"
+              type="email"
               className={`w-full rounded-md border px-3 py-2 text-sm placeholder-neutral-400 focus:border-green-600 focus:ring-green-600 mt-2 ${
-                errors.user ? "border-red-500" : "border-neutral-300"
+                errors.email ? "border-red-500" : "border-neutral-300"
               }`}
-              {...register("user")}
+              placeholder="example@gmail.com"
+              {...register("email", { required: true })}
             />
+            {errors.email && (
+              <p className="text-red-600 text-sm mt-1">Email is required</p>
+            )}
           </div>
 
           {/* Password */}
           <div>
             <label
-              htmlFor="pass"
+              htmlFor="password"
               className="mb-1 block text-sm font-medium text-neutral-700"
             >
               Password<span className="ml-0.5 text-red-600">*</span>
             </label>
             <input
-              id="pass"
+              id="password"
               type="password"
               className={`w-full rounded-md border px-3 py-2 text-sm placeholder-neutral-400 focus:border-green-600 focus:ring-green-600 mt-2 ${
-                errors.pass ? "border-red-500" : "border-neutral-300"
+                errors.password ? "border-red-500" : "border-neutral-300"
               }`}
-              {...register("pass")}
+              placeholder="••••••••"
+              {...register("password", { required: true })}
             />
+            {errors.password && (
+              <p className="text-red-600 text-sm mt-1">Password is required</p>
+            )}
           </div>
 
           {/* Remember + Forgot */}
@@ -99,6 +137,11 @@ const LogIn = () => {
           >
             Log in
           </button>
+
+          {/* Display Firebase Error */}
+          {Error && (
+            <p className="text-red-600 text-center mt-2 mb-2">{Error}</p>
+          )}
         </form>
       </div>
     </section>

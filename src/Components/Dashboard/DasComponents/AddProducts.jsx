@@ -60,7 +60,7 @@ const AddProducts = () => {
       discount: data.discount,
       rating: data.rating,
       description: data.description,
-      images: imageUrls, // array of uploaded image URLs
+      images: imageUrls, 
     };
 
     const result = await axiosPublic.post("/products", productData);
@@ -68,7 +68,7 @@ const AddProducts = () => {
     if (result.status === 200 || result.status === 201) {
       Swal.fire("Success", "Product added successfully!", "success");
       reset();
-      setImagePreviews([null, null, null]); // Reset image previews
+      setImagePreviews([null, null, null]); 
     }
   } catch (error) {
     console.error("Error adding product:", error);

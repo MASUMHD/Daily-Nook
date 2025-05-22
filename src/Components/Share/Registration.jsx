@@ -1,7 +1,17 @@
+/* eslint-disable no-useless-escape */
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Registration = () => {
+
+  const { createUser } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const [passwordError, setPasswordError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -9,15 +19,75 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
 
+  // navigation system
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
+
   const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
+  const {  email, password, username, role } = data;
+
+  // Password validation
+  if (password.length < 6) {
+    setPasswordError("Password must be at least 6 characters long");
+    return;
+  } else if (!/[A-Z]/.test(password)) {
+    setPasswordError("Password must contain at least one uppercase letter");
+    return;
+  } else if (!/[a-z]/.test(password)) {
+    setPasswordError("Password must contain at least one lowercase letter");
+    return;
+  } else if (!/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password)) {
+    setPasswordError("Password must contain at least one special character");
+    return;
+  }
+
+  // Create user in Firebase
+  createUser(email, password)
+    .then((result) => {
+      if (result.user) {
+        
+          const userInfo = {
+            email,
+            password,
+            username,
+            role,
+          };
+
+          // Save user info in the database
+          axiosPublic
+            .post("/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  icon: "success",
+                  title: "Registered Successfully!",
+                  text: "Welcome aboard!",
+                  timer: 2000,
+                  showConfirmButton: false,
+                });
+                navigate(from, { replace: true });
+              }
+            })
+            .catch((err) => {
+              console.error("DB Error:", err);
+              setPasswordError("Failed to save user to database.");
+            });
+        
+      }
+    })
+    .catch((err) => {
+      console.error("Auth Error:", err);
+      setPasswordError(err.message);
+    });
+};
+
 
   return (
     <section className="flex mb-16 items-start justify-center pt-3 md:pt-6">
       <div className="w-full max-w-lg px-6">
-        <div className="mb-4 md:mb-8 flex justify-center gap-6 text-xl md:text-2xl font-semibold">
+        <div className="mb-4 md:mb-6 flex justify-center gap-6 text-xl md:text-2xl font-semibold">
           <Link
             to="/login"
             className="text-neutral-400 transition-colors hover:text-neutral-900"
@@ -31,7 +101,7 @@ const Registration = () => {
           </Link>
         </div>
 
-        <p className="mb-6 text-center text-sm text-neutral-600 md:text-base">
+        <p className="mb-5 text-center text-sm text-neutral-600 md:text-base">
           There are many advantages to creating an account: the payment process
           is faster, shipment tracking is possible and much more.
         </p>
@@ -112,6 +182,10 @@ const Registration = () => {
           >
             Register
           </button>
+
+          {passwordError && (
+              <p className="text-red-500 text-center mt- mb-2">{passwordError}</p>
+            )}
         </form>
       </div>
     </section>
