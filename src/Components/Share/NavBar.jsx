@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { FaRegHeart, FaRegUser, FaBars, FaTimes, FaBlog } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { TiShoppingCart } from "react-icons/ti";
-import NavSearch from "../NavBar/NavSearch";
-import NavMenus from "../NavBar/NavMenus";
 import {
   MdHome,
   MdOutlineContactMail,
@@ -13,14 +11,30 @@ import {
 import { BsShop } from "react-icons/bs";
 import { GiFinishLine, GiFruitBowl } from "react-icons/gi";
 import { IoMdTrendingUp } from "react-icons/io";
+import NavSearch from "../NavBar/NavSearch";
+import NavMenus from "../NavBar/NavMenus";
+import useAuth from "../Hooks/useAuth";
 
 const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const { user, logOut } = useAuth();
+
+  console.log("user", user.email.photoURL);
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (err) {
+      console.error("Logout failed", err);
+    }
+  };
 
   return (
     <main className="sticky top-0 z-50">
       <div className="bg-[#72FBA4] shadow lg:shadow-2xl">
         <header className="flex justify-between items-center p-4 md:px-6 lg:px-28">
+          {/* Logo & Location */}
           <div className="flex items-center space-x-2">
             <img
               src="https://i.postimg.cc/9MkMgnr3/g10.png"
@@ -39,36 +53,81 @@ const NavBar = () => {
             </div>
           </div>
 
-          {/* Search Bar (Desktop) */}
+          {/* Search (Desktop) */}
           <div className="hidden lg:flex">
             <NavSearch />
           </div>
 
-          {/* Right Side menu (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Account */}
-            <Link to="/login" className="flex items-center space-x-2 hover:text-[#634C9F]">
-              <FaRegUser size={24} />
-              <p className="text-sm">
-                Sign In <br />
-                <span className="font-bold">Account</span>
-              </p>
-            </Link>
+          {/* Desktop Right Menu */}
+          <div className="hidden md:flex items-center space-x-4 relative">
+            {/* Account/Profile */}
+            {user?.email ? (
+              <div className="relative">
+                <button
+                  onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                  className="w-10 h-10 rounded-full overflow-hidden border-2 border-white"
+                >
+                  {user?.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="Profile"
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full text-gray-600">
+                      <FaRegUser size={24} />
+                    </div>
+                  )}
+                </button>
+
+                {isProfileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 z-50">
+                    <Link
+                      to="/dashboard/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsProfileMenuOpen(false)}
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center space-x-2 hover:text-[#634C9F]"
+              >
+                <FaRegUser size={24} />
+                <p className="text-sm">
+                  Sign In <br />
+                  <span className="font-bold">Account</span>
+                </p>
+              </Link>
+            )}
 
             {/* Dashboard */}
             <Link
               to="/dashboard"
               className="relative group flex items-center justify-center"
             >
-              <MdOutlineDashboard size={24} className="group-hover:text-[#634C9F]" />
-              <span className="absolute bottom-full  opacity-0 group-hover:opacity-100 transition-opacity duration-200  text-sm font-bold">
+              <MdOutlineDashboard
+                size={24}
+                className="group-hover:text-[#634C9F]"
+              />
+              <span className="absolute bottom-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm font-bold">
                 Dashboard
               </span>
             </Link>
 
             {/* Wishlist */}
             <Link to="/wishlist" className="relative">
-              <FaRegHeart size={24}  />
+              <FaRegHeart size={24} />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                 0
               </span>
@@ -93,109 +152,72 @@ const NavBar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5 ">
-            {/* Nav Menus */}
-            <Link
-              to="/"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <MdHome size={20} />
-              <span className="text-sm font-semibold">Home</span>
-            </Link>
+          <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5">
+            {/* Nav Links */}
+            {[
+              { to: "/", icon: <MdHome size={20} />, label: "Home" },
+              { to: "/products", icon: <BsShop size={20} />, label: "Shop" },
+              {
+                to: "/fruits-vegetables",
+                icon: <GiFruitBowl size={20} />,
+                label: "Fruits & Vegetables",
+              },
+              { to: "/blog", icon: <FaBlog size={20} />, label: "Blog" },
+              {
+                to: "/contact",
+                icon: <MdOutlineContactMail size={20} />,
+                label: "Contact",
+              },
+              {
+                to: "/trending-products",
+                icon: <IoMdTrendingUp size={20} />,
+                label: "Trending Products",
+              },
+              {
+                to: "/almost-finished",
+                icon: <GiFinishLine size={20} />,
+                label: "Almost Finished",
+              },
+              {
+                to: "/login",
+                icon: <FaRegUser size={20} />,
+                label: "Account",
+              },
+              {
+                to: "/dashboard",
+                icon: <MdOutlineDashboard size={20} />,
+                label: "Dashboard",
+              },
+              {
+                to: "/wishlist",
+                icon: <FaRegHeart size={20} />,
+                label: "Wishlist (0)",
+              },
+              {
+                to: "/cart",
+                icon: <TiShoppingCart size={20} />,
+                label: "Cart (0)",
+              },
+            ].map(({ to, icon, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className="flex items-center space-x-2 hover:text-[#634C9F]"
+              >
+                {icon}
+                <span className="text-sm font-semibold">{label}</span>
+              </Link>
+            ))}
 
-            <Link
-              to="/products"
-              className="flex items-center space-x-2 hover:text-[#634C9F] "
-            >
-              <BsShop size={20} />
-              <span className="text-sm font-semibold">Shop</span>
-            </Link>
-
-            <Link
-              to="/fruits-vegetables"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <GiFruitBowl size={20} />
-              <span className="text-sm font-semibold">Fruits & Vegetables</span>
-            </Link>
-
-            <Link
-              to="/blog"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <FaBlog size={20} />
-              <span className="text-sm font-semibold">Blog</span>
-            </Link>
-
-            <Link
-              to="/contact"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <MdOutlineContactMail size={20} />
-              <span className="text-sm font-semibold">Contact</span>
-            </Link>
-
-            <Link
-              to="/trending-products"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <IoMdTrendingUp size={20} />
-              <span className="text-sm font-semibold">Trending Products</span>
-            </Link>
-
-            <Link
-              to="/almost-finished"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <GiFinishLine size={20} />
-              <span className="text-sm font-semibold">Almost Finished</span>
-            </Link>
-
-            {/* Search (Mobile) */}
+            {/* Mobile Search */}
             <div>
               <NavSearch />
             </div>
-
-            {/* Account */}
-            <Link
-              to="/login"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <FaRegUser size={20} />
-              <span className="text-sm font-semibold">Account</span>
-            </Link>
-
-            {/* Dashboard */}
-            <Link
-              to="/dashboard"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <MdOutlineDashboard size={20} />
-              <span className="text-sm font-semibold">Dashboard</span>
-            </Link>
-
-            {/* Favorites */}
-            <Link
-              to="/wishlist"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <FaRegHeart size={20} />
-              <span className="text-sm font-semibold">Wishlist (0)</span>
-            </Link>
-
-            {/* Cart */}
-            <Link
-              to="/cart"
-              className="flex items-center space-x-2 hover:text-[#634C9F]"
-            >
-              <TiShoppingCart size={20} />
-              <span className="text-sm font-semibold">Cart (0)</span>
-            </Link>
           </div>
         )}
       </div>
 
-      {/* nav menus */}
+      {/* NavMenus (desktop only) */}
       <div className="hidden lg:block">
         <NavMenus />
       </div>
