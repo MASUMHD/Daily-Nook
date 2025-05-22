@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaRegHeart, FaRegUser, FaBars, FaTimes, FaBlog } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
@@ -20,7 +20,8 @@ const NavBar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const { user, logOut } = useAuth();
 
-  console.log("user", user.email.photoURL);
+  const profileRef = useRef();
+  const mobileMenuRef = useRef();
 
   const handleLogout = async () => {
     try {
@@ -29,6 +30,27 @@ const NavBar = () => {
       console.error("Logout failed", err);
     }
   };
+
+  // Close menus on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileMenuOpen(false);
+      }
+
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <main className="sticky top-0 z-50">
@@ -62,10 +84,10 @@ const NavBar = () => {
           <div className="hidden md:flex items-center space-x-4 relative">
             {/* Account/Profile */}
             {user?.email ? (
-              <div className="relative">
+              <div className="relative" ref={profileRef}>
                 <button
                   onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                  className="w-10 h-10 rounded-full overflow-hidden border-2 border-white"
+                  className="w-8 h-8 rounded-full overflow-hidden border-2 border-white hover:border-[#634C9F]"
                 >
                   {user?.photoURL ? (
                     <img
@@ -74,8 +96,8 @@ const NavBar = () => {
                       className="object-cover w-full h-full"
                     />
                   ) : (
-                    <div className="flex items-center justify-center w-full h-full text-gray-600">
-                      <FaRegUser size={24} />
+                    <div className="flex items-center justify-center w-full h-full text-gray-600 hover:text-gray-800">
+                      <FaRegUser size={18} />
                     </div>
                   )}
                 </button>
@@ -152,8 +174,10 @@ const NavBar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5">
-            {/* Nav Links */}
+          <div
+            ref={mobileMenuRef}
+            className="md:hidden bg-[#72FBA4] px-5 pt-6 pb-6 space-y-5"
+          >
             {[
               { to: "/", icon: <MdHome size={20} />, label: "Home" },
               { to: "/products", icon: <BsShop size={20} />, label: "Shop" },
