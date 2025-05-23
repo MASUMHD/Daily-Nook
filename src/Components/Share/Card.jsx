@@ -59,7 +59,9 @@ const Card = ({ product }) => {
       </Link>
 
       {/* Product Name */}
-      <h3 className="text-sm font-semibold line-clamp-2">{name}</h3>
+      <Link className="cursor-pointer hover:text-[#634C9F] hover:underline" to={`/products/${product._id}`}>
+        <h3 className="text-sm font-semibold line-clamp-2">{name}</h3>
+      </Link>
 
       {/* Description (optional short) */}
       <p className="text-xs text-gray-500 line-clamp-1 mt-1">{description}</p>
