@@ -10,6 +10,7 @@ import LogIn from "../Share/LogIn";
 import Registration from "../Share/Registration";
 import Error from "../Share/Error";
 import AddProducts from "../Dashboard/DasComponents/AddProducts";
+import ProductsDetails from "../Share/ProductsDetails";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ export const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration/>
+      },
+      // ProductsDetails route
+      {
+        path: "/products/:id",
+        element: <ProductsDetails/>
       }
     ],
   },

@@ -1,5 +1,6 @@
 import { FaHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
   const {
@@ -46,13 +47,16 @@ const Card = ({ product }) => {
       </div>
 
       {/* Product Image */}
-      <div className="h-32 flex justify-center items-center mb-3">
-        <img
-          src={firstImage}
-          alt={name}
-          className="max-h-full rounded-md object-cover hover:scale-105 transition duration-500"
-        />
-      </div>
+      {/* product details link */}
+      <Link to={`/products/${product._id}`}>
+        <div className="h-32 flex justify-center items-center mb-3">
+          <img
+            src={firstImage}
+            alt={name}
+            className="max-h-full rounded-md object-cover hover:scale-105 transition duration-500"
+          />
+        </div>
+      </Link>
 
       {/* Product Name */}
       <h3 className="text-sm font-semibold line-clamp-2">{name}</h3>
