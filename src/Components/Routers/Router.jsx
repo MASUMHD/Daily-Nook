@@ -11,6 +11,7 @@ import Registration from "../Share/Registration";
 import Error from "../Share/Error";
 import AddProducts from "../Dashboard/DasComponents/AddProducts";
 import ProductsDetails from "../Share/ProductsDetails";
+import Contact from "../Pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -38,10 +39,13 @@ export const router = createBrowserRouter([
         path: "/registration",
         element: <Registration/>
       },
-      // ProductsDetails route
       {
         path: "/products/:id",
         element: <ProductsDetails/>
+      },
+      {
+        path: "/contact",
+        element: <Contact/>
       }
     ],
   },
