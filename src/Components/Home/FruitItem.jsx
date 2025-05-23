@@ -2,6 +2,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import useProducts from "../Hooks/useProducts";
 import Card from "../Share/Card";
 import Loading from "../Share/Loading";
+import { Link } from "react-router-dom";
 
 const FruitItem = () => {
   const { products, isLoading, isError, error } = useProducts();
@@ -22,9 +23,11 @@ const FruitItem = () => {
           </p>
         </div>
         <div>
-          <button className="flex items-center gap-1 font-medium md:font-semibold  md:border border-gray-400 rounded-full px-3 py-[3px] hover:bg-[#634C9F] hover:text-white">
-            <span>View All</span> <IoIosArrowRoundForward size={25} />
-          </button>
+          <Link to="/products">
+            <button className="flex items-center gap-1 font-medium md:font-semibold  md:border border-gray-400 rounded-full px-3 py-[3px] hover:bg-[#634C9F] hover:text-white">
+              <span>View All</span> <IoIosArrowRoundForward size={25} />
+            </button>{" "}
+          </Link>
         </div>
       </div>
 
