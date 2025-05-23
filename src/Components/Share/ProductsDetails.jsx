@@ -11,10 +11,11 @@ import {
   FaPlus,
   FaRegClock,
   FaCreditCard,
-  FaShieldAlt,
   FaWhatsapp,
 } from "react-icons/fa";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import { GoShieldCheck } from "react-icons/go";
+import CountdownTimer from "./CountdownTimer";
 
 const ProductsDetails = () => {
   const { id } = useParams();
@@ -35,10 +36,6 @@ const ProductsDetails = () => {
     discount,
     rating,
     images,
-    category,
-    collate,
-    quantity,
-    date,
     ["first-image"]: firstImage,
     ["second-image"]: secondImage,
     ["third-image"]: thirdImage,
@@ -48,7 +45,7 @@ const ProductsDetails = () => {
   const mainImage = selectedImage || allImages?.[0];
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:flex gap-8 mt-0 lg:mt-10">
+    <div className="max-w-7xl mx-auto p-4 md:flex gap-8 mt-0 lg:mt-5">
       {/* Image Section */}
       <div className="md:w-1/2">
         <div className="relative">
@@ -95,7 +92,7 @@ const ProductsDetails = () => {
           <span className="text-2xl font-bold text-red-600">{price} BD</span>
           {discount && (
             <span className="bg-red-100 text-gray-600 px-2 py-1 rounded font-semibold">
-              -{discount}
+              -{discount}%
             </span>
           )}
         </div>
@@ -113,18 +110,20 @@ const ProductsDetails = () => {
           </a>
         </div>
 
-        <div className="flex items-center gap-4 pt-2">
+        <CountdownTimer />
+
+        <div className="flex items-center gap-4 pt-1 pb-1">
           <div className="flex items-center gap-4 ">
             <button
               onClick={() => setQuantityCount(Math.max(1, quantityCount - 1))}
-              className="p-2 border rounded"
+              className="p-2 border rounded hover:bg-green-200"
             >
               <FaMinus />
             </button>
             <span className="px-4">{quantityCount}</span>
             <button
               onClick={() => setQuantityCount(quantityCount + 1)}
-              className="p-2 border rounded"
+              className="p-2 border rounded hover:bg-green-200"
             >
               <FaPlus />
             </button>
@@ -140,32 +139,39 @@ const ProductsDetails = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <FaCreditCard className="text-lg" />
-          <p>Payment upon receipt, card, Google Pay, -5% for online</p>
-        </div>
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <FaShieldAlt className="text-lg" />
-          <p>Warranty: No returns unless defective.</p>
-        </div>
-
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <FaRegClock className="text-lg" />
-          <p>
-            Offer ends in:{" "}
-            <span className="text-red-500 font-semibold">81:06:50</span>
-          </p>
+        <div className="border-2 rounded-lg ">
+          <div className="flex items-center gap-8 text-sm text-gray-600 px-4 py-2 border-b-2">
+            <FaCreditCard size={30} className="text-lg" />
+            <p className="">
+              <span className="font-semibold">Payment.</span>{" "}
+              <span className="text-gray-500">
+                Payment upon receipt of goods, Payment by card in the
+                department, Google Pay,Online card, -5% discount in case of
+                payment
+              </span>
+            </p>
+          </div>
+          <div className="flex items-center gap-8 text-sm text-gray-600 px-4 py-2 ">
+            <GoShieldCheck size={30} className="text-lg" />
+            <p className="">
+              <span className="font-semibold">Warranty.</span>{" "}
+              <span className="text-gray-500">
+                The Consumer Protection Act does not provide for the return of
+                this product ofproperquality.
+              </span>
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center gap-4 mt-6 text-sm text-gray-700">
-          <button className="flex items-center gap-2 hover:text-green-600">
-            <FaHeart /> Add to wishlist
+          <button className="flex items-center gap-2 hover:text-green-600 text-sm md:text-base">
+            <span className="px-2 py-1 border-2 rounded-md "><FaHeart size={18} /></span> Add to wishlist
           </button>
-          <button className="flex items-center gap-2 hover:text-green-600">
-            <FaShareAlt /> Share
+          <button className="flex items-center gap-2 hover:text-green-600 text-sm md:text-base">
+            <span className="px-2 py-1 border-2 rounded-md "><FaShareAlt size={18} /></span> Share this Product
           </button>
-          <button className="flex items-center gap-2 hover:text-green-600">
-            <FaExchangeAlt /> Compare
+          <button className="flex items-center gap-2 hover:text-green-600 text-sm md:text-base">
+            <span className="px-2 py-1 border-2 rounded-md "><FaExchangeAlt size={18} /></span> Compare
           </button>
         </div>
       </div>

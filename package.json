@@ -18,6 +18,7 @@
     "lottie-react": "^2.4.1",
     "match-sorter": "^8.0.0",
     "react": "^19.0.0",
+    "react-countdown": "^2.3.6",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.4",
     "react-hot-toast": "^2.5.2",
