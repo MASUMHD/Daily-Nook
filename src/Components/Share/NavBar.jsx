@@ -148,7 +148,7 @@ const NavBar = () => {
             </Link>
 
             {/* Wishlist */}
-            <Link to="/wishlist" className="relative">
+            <Link to="/wishlist" className="relative hover:text-[#634C9F]">
               <FaRegHeart size={24} />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                 0
@@ -156,8 +156,8 @@ const NavBar = () => {
             </Link>
 
             {/* Cart */}
-            <Link to="/cart" className="relative">
-              <TiShoppingCart size={24} />
+            <Link to="/add-to-card" className="relative ">
+              <TiShoppingCart className="hover:text-[#634C9F]" size={24} />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
                 0
               </span>

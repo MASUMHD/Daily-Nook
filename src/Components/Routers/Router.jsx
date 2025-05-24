@@ -12,6 +12,8 @@ import Error from "../Share/Error";
 import AddProducts from "../Dashboard/DasComponents/AddProducts";
 import ProductsDetails from "../Share/ProductsDetails";
 import Contact from "../Pages/Contact";
+import WishLists from "../WishLists/WishLists";
+import AddToCard from "../WishLists/AddToCard";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>
+      },
+      {
+        path: "/wishlists",
+        element: <WishLists/>
+      },
+      {
+        path: "/add-to-card",
+        element: <AddToCard/>
       }
     ],
   },

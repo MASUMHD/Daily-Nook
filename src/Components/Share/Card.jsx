@@ -1,8 +1,15 @@
 import { FaHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Card = ({ product }) => {
+  const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+  const email = user?.email || "";
+
   const {
     name,
     price,
@@ -32,6 +39,30 @@ const Card = ({ product }) => {
     return stars;
   };
 
+
+
+  const handleAddToCart = async () => {
+  if (!email) {
+    Swal.fire("Error", "Please log in to add items to cart", "error");
+    return;
+  }
+
+  const cartItem = {
+    ...product,
+    email,
+  };
+
+  try {
+    const res = await axiosPublic.post("/cart", cartItem);
+    if (res.data.insertedId) {
+      Swal.fire("Success", "Added to cart!", "success");
+    }
+  } catch (err) {
+    console.error("Add to cart failed:", err);
+    Swal.fire("Error", "Already product added to cart", "error");
+  }
+};
+
   return (
     <div className="relative bg-white rounded-xl border shadow-sm p-3 w-full max-w-[250px] mx-auto hover:scale-105 transition duration-500 flex flex-col">
       {/* Discount Badge */}
@@ -47,7 +78,6 @@ const Card = ({ product }) => {
       </div>
 
       {/* Product Image */}
-      {/* product details link */}
       <Link to={`/products/${product._id}`}>
         <div className="h-32 flex justify-center items-center mb-3">
           <img
@@ -59,7 +89,10 @@ const Card = ({ product }) => {
       </Link>
 
       {/* Product Name */}
-      <Link className="cursor-pointer hover:text-[#634C9F] hover:underline" to={`/products/${product._id}`}>
+      <Link
+        className="cursor-pointer hover:text-[#634C9F] hover:underline"
+        to={`/products/${product._id}`}
+      >
         <h3 className="text-sm font-semibold line-clamp-2">{name}</h3>
       </Link>
 
@@ -83,9 +116,14 @@ const Card = ({ product }) => {
       {/* Bottom Row */}
       <div className="flex justify-between items-center mt-2">
         <button className="flex items-center gap-5 py-1  text-xs font-medium  rounded-full">
-          <div className="flex items-center bg-green-100 text-green-600 rounded-lg p-1 hover:bg-green-600 hover:text-white transition duration-500">
-            <IoMdCart size={23} />
-          </div>{" "}
+          {/* Add to Cart */}
+          
+            <div className="flex items-center bg-green-100 text-green-600 rounded-lg p-1 hover:bg-green-600 hover:text-white transition duration-500"
+            onClick={handleAddToCart}
+            >
+              <IoMdCart size={23} />
+            </div>{" "}
+          
           <span className="text-green-600">IN STOCK</span>
         </button>
       </div>
