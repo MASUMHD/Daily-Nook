@@ -14,11 +14,13 @@ import { IoMdTrendingUp } from "react-icons/io";
 import NavSearch from "../NavBar/NavSearch";
 import NavMenus from "../NavBar/NavMenus";
 import useAuth from "../Hooks/useAuth";
+import useCartItems from "../Hooks/useCartItems";
 
 const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const { cartItems } = useCartItems();
 
   const profileRef = useRef();
   const mobileMenuRef = useRef();
@@ -159,7 +161,7 @@ const NavBar = () => {
             <Link to="/add-to-card" className="relative ">
               <TiShoppingCart className="hover:text-[#634C9F]" size={24} />
               <span className="absolute -top-1 -right-2 bg-red-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-                0
+                {cartItems.length}
               </span>
             </Link>
           </div>
