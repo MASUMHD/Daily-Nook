@@ -18,6 +18,8 @@ const AddToCard = () => {
     }));
   };
 
+  
+
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -85,7 +87,8 @@ const AddToCard = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold">{item.name}</h3>
+                  {/* item.name ba item.productName */}
+                  <h3 className="text-base font-semibold">{item.name || item.productName}</h3>
                   <p className="text-gray-600">{item.price}BD</p>
                   <div className="flex items-center gap-2 mt-2">
                     <button

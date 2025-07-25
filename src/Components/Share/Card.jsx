@@ -45,15 +45,11 @@ const Card = ({ product }) => {
       return;
     }
 
-    const { _id, ...productWithoutId } = product;
-
-    const cartItem = {
-      ...productWithoutId,
-      email,
-    };
-
     try {
-      const res = await axiosPublic.post("/cart", cartItem);
+      const res = await axiosPublic.post("/cart", {
+        productId: product._id,
+        email,
+      });  
       if (res.data.insertedId) {
         Swal.fire("Success", "Added to cart!", "success");
       }
@@ -61,7 +57,13 @@ const Card = ({ product }) => {
       console.error("Add to cart failed:", err);
       Swal.fire("Error", "Already product added to cart", "error");
     }
+    
   };
+  
+
+ 
+
+
 
   return (
     <div className="relative bg-white rounded-xl border shadow-sm p-3 w-full max-w-[250px] mx-auto hover:scale-105 transition duration-500 flex flex-col">
