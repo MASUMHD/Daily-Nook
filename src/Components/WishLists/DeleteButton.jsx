@@ -23,9 +23,7 @@ const DeleteButton = ({ productId, refetch }) => {
       if (res.data.deletedCount > 0) {
         Swal.fire("Deleted!", "Your item has been deleted.", "success");
         refetch();
-      } else {
-        Swal.fire("Error!", "No item was deleted.", "error");
-      }
+      } 
     } catch (error) {
       Swal.fire("Error!", "Failed to delete the item.", "error");
       console.error(error);

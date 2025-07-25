@@ -39,45 +39,42 @@ const Card = ({ product }) => {
     return stars;
   };
 
-
-
   const handleAddToCart = async () => {
-  if (!email) {
-    Swal.fire("Error", "Please log in to add items to cart", "error");
-    return;
-  }
-
-  const cartItem = {
-    ...product,
-    email,
-  };
-
-  try {
-    const res = await axiosPublic.post("/cart", cartItem);
-    if (res.data.insertedId) {
-      Swal.fire("Success", "Added to cart!", "success");
+    if (!email) {
+      Swal.fire("Error", "Please log in to add items to cart", "error");
+      return;
     }
-  } catch (err) {
-    console.error("Add to cart failed:", err);
-    Swal.fire("Error", "Already product added to cart", "error");
-  }
-};
+
+    const { _id, ...productWithoutId } = product;
+
+    const cartItem = {
+      ...productWithoutId,
+      email,
+    };
+
+    try {
+      const res = await axiosPublic.post("/cart", cartItem);
+      if (res.data.insertedId) {
+        Swal.fire("Success", "Added to cart!", "success");
+      }
+    } catch (err) {
+      console.error("Add to cart failed:", err);
+      Swal.fire("Error", "Already product added to cart", "error");
+    }
+  };
 
   return (
     <div className="relative bg-white rounded-xl border shadow-sm p-3 w-full max-w-[250px] mx-auto hover:scale-105 transition duration-500 flex flex-col">
-      {/* Discount Badge */}
       {discount && (
         <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full z-10">
           {discount}
         </div>
       )}
 
-      {/* Wishlist Heart */}
       <div className="absolute top-2 right-2 text-gray-400 hover:text-red-500 cursor-pointer">
         <FaHeart />
       </div>
 
-      {/* Product Image */}
       <Link to={`/products/${product._id}`}>
         <div className="h-32 flex justify-center items-center mb-3">
           <img
@@ -88,7 +85,6 @@ const Card = ({ product }) => {
         </div>
       </Link>
 
-      {/* Product Name */}
       <Link
         className="cursor-pointer hover:text-[#634C9F] hover:underline"
         to={`/products/${product._id}`}
@@ -96,16 +92,13 @@ const Card = ({ product }) => {
         <h3 className="text-sm font-semibold line-clamp-2">{name}</h3>
       </Link>
 
-      {/* Description (optional short) */}
       <p className="text-xs text-gray-500 line-clamp-1 mt-1">{description}</p>
 
-      {/* Rating */}
       <div className="flex items-center text-sm mt-1">
         <div className="flex">{renderStars()}</div>
         <span className="text-gray-500 ml-1 text-xs">({rating})</span>
       </div>
 
-      {/* Price */}
       <div className="flex items-center gap-2 mt-2">
         <span className="text-red-600 font-bold">{price} BD</span>
         <span className="line-through text-gray-400 text-sm">
@@ -113,17 +106,14 @@ const Card = ({ product }) => {
         </span>
       </div>
 
-      {/* Bottom Row */}
       <div className="flex justify-between items-center mt-2">
         <button className="flex items-center gap-5 py-1  text-xs font-medium  rounded-full">
-          {/* Add to Cart */}
-          
-            <div className="flex items-center bg-green-100 text-green-600 rounded-lg p-1 hover:bg-green-600 hover:text-white transition duration-500"
+          <div
+            className="flex items-center bg-green-100 text-green-600 rounded-lg p-1 hover:bg-green-600 hover:text-white transition duration-500"
             onClick={handleAddToCart}
-            >
-              <IoMdCart size={23} />
-            </div>{" "}
-          
+          >
+            <IoMdCart size={23} />
+          </div>{" "}
           <span className="text-green-600">IN STOCK</span>
         </button>
       </div>

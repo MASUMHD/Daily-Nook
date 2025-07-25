@@ -32,12 +32,11 @@ const AddToCard = () => {
     if (result.isConfirmed) {
       try {
         const res = await axiosPublic.delete(`/cart/${id}`);
+        console.log(res.data);
         if (res.data.deletedCount > 0) {
           Swal.fire("Deleted!", "Your item has been deleted.", "success");
           refetch();
-        } else {
-          Swal.fire("Error!", "No item was deleted.", "error");
-        }
+        } 
       } catch (error) {
         Swal.fire("Error!", "Failed to delete the item.", "error");
         console.error(error);
