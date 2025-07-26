@@ -15,6 +15,29 @@ const AddToCard = () => {
     }));
   };
 
+  // calculate total price
+  const getTotalPrice = () => {
+    let subtotal = 0;
+
+    cartItems.forEach((item) => {
+      const quantity = quantities[item._id] || 1;
+      subtotal += (item.price || 0) * quantity;
+    });
+
+    const tax = subtotal * 0.067;
+    const shipping = 0;
+    const totalDue = subtotal + tax + shipping;
+
+    return {
+      subtotal: subtotal.toFixed(2),
+      tax: tax.toFixed(2),
+      shipping: shipping.toFixed(2),
+      totalDue: totalDue.toFixed(2),
+    };
+  };
+
+  const { subtotal, tax, shipping, totalDue } = getTotalPrice();
+
   if (isLoading)
     return (
       <div className="flex items-center justify-center h-screen">
@@ -57,7 +80,9 @@ const AddToCard = () => {
                     {item.name || item.productName}
                   </h3>
                   <p className="text-gray-600">{item.price}BD</p>
+
                   <div className="flex items-center gap-2 mt-2">
+                    {/* minus button */}
                     <button
                       onClick={() => updateQuantity(item._id, -1)}
                       className="p-2 bg-gray-200 rounded"
@@ -65,6 +90,8 @@ const AddToCard = () => {
                       <FaMinus size={10} />
                     </button>
                     <span>{quantities[item._id] || 1}</span>
+
+                    {/* plus button */}
                     <button
                       onClick={() => updateQuantity(item._id, 1)}
                       className="p-2 bg-gray-200 rounded"
@@ -88,19 +115,21 @@ const AddToCard = () => {
               Apply
             </button>
           </div>
-          <div className="mt-4 text-sm">
-            <p>
-              Subtotal: <span className="float-right">17000BD</span>
+
+          {/* total cash and tax and shipping fee section */}
+          <div className="mt-4 text-lg font-semibold text-gray-900 ">
+            <p className="mb-2 p-3 border-4 rounded-t-xl border-b">
+              Subtotal: <span className="float-right">{subtotal}</span>
             </p>
-            <p>
-              Sales tax (6.7%): <span className="float-right">120BD</span>
+            <p className="mb-2 p-3 border-4 border-b">
+              Sales tax (6.7%): <span className="float-right">{tax}</span>
             </p>
-            <p>
-              Shipping Fee: <span className="float-right">0BD</span>
+            <p className="mb-2 p-3 border-4 border-b">
+              Shipping Fee: <span className="float-right">{shipping}BD</span>
             </p>
-            <p className="font-semibold">
+            <p className="mb-2 p-4 rounded-b-xl font-bold border-4 border-b">
               Total due:{" "}
-              <span className="float-right text-blue-600">17120BD</span>
+              <span className="float-right text-blue-600">{totalDue}BD</span>
             </p>
           </div>
         </div>
