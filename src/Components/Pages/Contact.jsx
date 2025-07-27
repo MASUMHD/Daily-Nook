@@ -8,8 +8,31 @@ import {
 import { MdLocationOn, MdOutlinePhoneInTalk } from "react-icons/md";
 import ButtomSlider from "../Home/ButtomSlider";
 import { LuMail } from "react-icons/lu";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "Thank you!",
+      text: "Your message has been sent successfully.",
+      icon: "success",
+      draggable: true,
+      confirmButtonText: "OK",
+      confirmButtonColor: "#634C9F",
+      customClass: {
+        popup: "bg-white text-gray-800 shadow-lg rounded-lg p-6",
+        title: "text-xl font-semibold mb-2",
+        content: "text-gray-600 mb-4",
+        confirmButton: "bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700",
+      },
+    });
+    console.log(data);
+    reset()
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       {/* Header */}
@@ -86,28 +109,32 @@ const Contact = () => {
         </div>
 
         {/* Right Side - Contact Form */}
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Your name *"
               className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
+              {...register("name", { required: true })}
             />
             <input
               type="email"
               placeholder="Your email *"
               className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
+              {...register("email", { required: true })}
             />
           </div>
           <input
             type="text"
             placeholder="Subject *"
             className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
+            {...register("subject", { required: true })}
           />
           <textarea
             rows="5"
             placeholder="Your message"
             className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
+            {...register("message", { required: true })}
           />
           <button
             type="submit"
