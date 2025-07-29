@@ -1,10 +1,35 @@
+import useProducts from "../../Hooks/useProducts";
+import Loading from "../../Share/Loading";
 
 const Products = () => {
+  const { products, isLoading, isError, error } = useProducts();
+
+  // Loading and error
+  if (isLoading) {
     return (
-        <div className='mt-14'>
-            <h1>Products</h1>
-        </div>
+      <p className=" h-screen flex items-center justify-center">
+        <Loading />
+      </p>
     );
+  }
+  if (isError) {
+    return (
+      <p className="text-center text-red-500 mt-5">Error: {error.message}</p>
+    );
+  }
+
+  return (
+    <div className="mt-14">
+      {products.map((product) => (
+        <div key={product._id} className="p-4 border rounded mb-4">
+          <p>
+            <strong>{product.name || product.productName}</strong> - $
+            {product.price}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Products;
