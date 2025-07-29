@@ -1,5 +1,6 @@
 import useProducts from "../../Hooks/useProducts";
 import Loading from "../../Share/Loading";
+import DasProductsTable from "./DasProductsTable";
 
 const Products = () => {
   const { products, isLoading, isError, error } = useProducts();
@@ -28,6 +29,9 @@ const Products = () => {
           </p>
         </div>
       ))}
+
+
+      <DasProductsTable products={products} />
     </div>
   );
 };
