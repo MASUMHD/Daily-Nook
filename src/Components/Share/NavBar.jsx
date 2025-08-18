@@ -136,6 +136,7 @@ const NavBar = () => {
             )}
 
             {/* Dashboard */}
+
             <Link
               to="/dashboard"
               className="relative group flex items-center justify-center"
@@ -209,11 +210,15 @@ const NavBar = () => {
                 icon: <FaRegUser size={20} />,
                 label: "Account",
               },
-              {
-                to: "/dashboard",
-                icon: <MdOutlineDashboard size={20} />,
-                label: "Dashboard",
-              },
+              ...(user?.email && user?.role === "vendor"
+                ? [
+                    {
+                      to: "/dashboard",
+                      icon: <MdOutlineDashboard size={20} />,
+                      label: "Dashboard",
+                    },
+                  ]
+                : []),
               {
                 to: "/wishlist",
                 icon: <FaRegHeart size={20} />,
