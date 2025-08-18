@@ -6,6 +6,8 @@ const DasUpdateAndDeleteProduct = ({ product, onClose, onUpdated }) => {
   const [formData, setFormData] = useState({ ...product });
   const axiosPublic = useAxiosPublic();
 
+  console.log("Product data:", product);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
