@@ -14,6 +14,8 @@ import ProductsDetails from "../Share/ProductsDetails";
 import Contact from "../Pages/Contact";
 import WishLists from "../WishLists/WishLists";
 import AddToCard from "../WishLists/AddToCard";
+import Customers from "../Dashboard/DasComponents/Customers";
+import Buyer from "../Dashboard/DasComponents/Buyer";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +76,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/add-products",
         element: <AddProducts />,
+      },
+      {
+        path: "/dashboard/customers",
+        element: <Customers />,
+      },
+      {
+        path: "/dashboard/buyer",
+        element: <Buyer />,
       }
     ],
   },

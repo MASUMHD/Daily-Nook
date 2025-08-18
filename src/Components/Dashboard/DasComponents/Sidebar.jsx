@@ -75,6 +75,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <FiUsers size={21} /> <span>Customers</span>
           </NavLink>
         </li>
+        
         <li>
           <NavLink to="/dashboard/invoices" className={linkClass}>
             <FiFileText size={21} /> <span>Invoices</span>
