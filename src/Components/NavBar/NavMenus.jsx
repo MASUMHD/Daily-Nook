@@ -32,7 +32,7 @@ const NavMenus = () => {
       </NavLink>
 
       <NavLink
-        to="/fruits-vegetables"
+        to="/fruitsAndVegetables"
         className={({ isActive }) => generateLinkClass(isActive)}
       >
         <li>

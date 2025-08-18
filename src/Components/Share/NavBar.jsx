@@ -185,7 +185,7 @@ const NavBar = () => {
               { to: "/", icon: <MdHome size={20} />, label: "Home" },
               { to: "/products", icon: <BsShop size={20} />, label: "Shop" },
               {
-                to: "/fruits-vegetables",
+                to: "/fruitsAndVegetables",
                 icon: <GiFruitBowl size={20} />,
                 label: "Fruits & Vegetables",
               },
