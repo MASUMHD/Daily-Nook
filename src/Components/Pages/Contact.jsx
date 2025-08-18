@@ -1,15 +1,18 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
 } from "react-icons/fa";
-import { MdLocationOn, MdOutlinePhoneInTalk } from "react-icons/md";
-import ButtomSlider from "../Home/ButtomSlider";
-import { LuMail } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion";
+import ButtomSlider from "../Home/ButtomSlider";
 
 const Contact = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -19,135 +22,168 @@ const Contact = () => {
       title: "Thank you!",
       text: "Your message has been sent successfully.",
       icon: "success",
-      draggable: true,
+      confirmButtonColor: "#16a34a",
       confirmButtonText: "OK",
-      confirmButtonColor: "#634C9F",
-      customClass: {
-        popup: "bg-white text-gray-800 shadow-lg rounded-lg p-6",
-        title: "text-xl font-semibold mb-2",
-        content: "text-gray-600 mb-4",
-        confirmButton: "bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700",
-      },
     });
     console.log(data);
-    reset()
+    reset();
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold mb-2">You can ask us questions</h1>
-        <p className="text-gray-600">
-          Contact us for all your questions and opinions, or you can solve your
-          problems in a shorter time with our contact offices.
-        </p>
-      </div>
-      <hr />
-      {/* Contact Grid */}
-      <div className="grid md:grid-cols-2 gap-10 border-t pt-10">
-        {/* Left Side - Office Info */}
-        <div>
-          <h2 className="text-xl font-bold text-black mb-3">Our Offices</h2>
-          <p className="text-gray-600 mb-4">
-            On dekande mydturtad mora även om skurkstat. Semirade timaheten
-            rena. Radiogen pasam inte loba även om prerade i garanterad
-            traditionell specialitet till bebel. Ev is sönde. Tun gps-väst att
-            epiligt. Diliga tresk dira. Ens biov dijevis.
+    <div className="py-12 -mt-5">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Hero */}
+        <motion.div
+          className="text-center mb-12 relative"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-5xl md:text-6xl font-extrabold text-green-700 mb-4 drop-shadow-lg">
+            Contact Us
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            We’re here to answer your questions and provide support. Reach out
+            to us anytime!
           </p>
+          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-40 h-1 bg-green-500 rounded-full"></div>
+        </motion.div>
 
-          <div className="flex items-start gap-2 mb-2 text-gray-600">
-            <MdLocationOn size={30} className="text-2xl text-black mt-1" />
-            <div>
-              <p className="text-sm text-gray-500">Khulna</p>
-              <p className="font-semibold">Khulna Khalishpur Office</p>
-              <p>103 BIDC Road, Khulna</p>
+        {/* Contact Grid */}
+        <motion.div
+          className="grid md:grid-cols-2 gap-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* Office Info */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition hover:scale-105">
+              <FaMapMarkerAlt className="text-green-600 text-3xl mb-2" />
+              <h3 className="font-bold text-lg mb-1">Our Office</h3>
+              <p className="text-gray-600">103 BIDC Road, Khalishpur, Khulna</p>
             </div>
-          </div>
-          <div className="flex items-center gap-2 mb-2 text-gray-600">
-            <MdOutlinePhoneInTalk
-              size={30}
-              className="text-2xl text-black mt-1"
-            />
-            <div>
-              <p className="font-semibold text-lg cursor-pointer hover:text-[#634C9F]">
-                {"+01840154417".split("").join(" ")}
+
+            <div className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex items-center gap-4 hover:scale-105">
+              <FaPhoneAlt className="text-green-600 text-2xl" />
+              <p className="font-semibold text-gray-800 hover:text-green-700 cursor-pointer">
+                +0 1840 154417
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-2 mb-2 text-gray-600">
-            <LuMail size={30} className="text-2xl text-black mt-1" />
-            <div>
-              <p className="text-blue-600 underline cursor-pointer font-semibold text-lg ">
-                {"dailynook@gmail.com".split("").join(" ")}
+
+            <div className="bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-2xl shadow-lg hover:shadow-xl transition flex items-center gap-4 hover:scale-105">
+              <FaEnvelope className="text-green-600 text-2xl" />
+              <p className="text-blue-600 underline cursor-pointer font-semibold">
+                dailynook@gmail.com
               </p>
             </div>
-          </div>
 
-          {/* Social Media Icons */}
-          <div className="mt-6">
-            <p className="text-lg font-medium text-gray-600 mb-4">Follow us:</p>
-            <div className="flex gap-4">
-              <FaFacebookF
-                size={25}
-                className="text-xl hover:text-green-500 text-blue-600 cursor-pointer"
+            {/* Social */}
+            <motion.div
+              className="mt-4"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <p className="text-lg font-medium text-gray-700 mb-3">
+                Follow Us
+              </p>
+              <div className="flex gap-5">
+                <FaFacebookF className="text-blue-600 text-2xl cursor-pointer hover:scale-125 transition" />
+                <FaTwitter className="text-sky-500 text-2xl cursor-pointer hover:scale-125 transition" />
+                <FaInstagram className="text-pink-500 text-2xl cursor-pointer hover:scale-125 transition" />
+                <FaLinkedinIn className="text-blue-700 text-2xl cursor-pointer hover:scale-125 transition" />
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.form
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white p-8 rounded-2xl shadow-xl space-y-6 hover:shadow-2xl transition bg-gradient-to-b from-[#f0fdf4] to-[#f9fafb] hover:scale-105"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="grid md:grid-cols-2 gap-4">
+              <input
+                type="text"
+                placeholder="Your Name *"
+                className="w-full border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 px-4 py-3 rounded-md shadow-sm peer"
+                {...register("name", { required: true })}
               />
-              <FaTwitter
-                size={25}
-                className="text-xl hover:text-green-500 text-blue-400 cursor-pointer"
-              />
-              <FaInstagram
-                size={25}
-                className="text-xl hover:text-green-500 text-pink-500 cursor-pointer"
-              />
-              <FaLinkedinIn
-                size={25}
-                className="text-xl hover:text-green-500 text-blue-700 cursor-pointer"
+              <input
+                type="email"
+                placeholder="Your Email *"
+                className="w-full border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 px-4 py-3 rounded-md shadow-sm peer"
+                {...register("email", { required: true })}
               />
             </div>
-          </div>
-        </div>
-
-        {/* Right Side - Contact Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-4">
             <input
               type="text"
-              placeholder="Your name *"
-              className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
-              {...register("name", { required: true })}
+              placeholder="Subject *"
+              className="w-full border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 px-4 py-3 rounded-md shadow-sm"
+              {...register("subject", { required: true })}
             />
-            <input
-              type="email"
-              placeholder="Your email *"
-              className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
-              {...register("email", { required: true })}
+            <textarea
+              rows="5"
+              placeholder="Your Message"
+              className="w-full border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 px-4 py-3 rounded-md shadow-sm"
+              {...register("message", { required: true })}
             />
-          </div>
-          <input
-            type="text"
-            placeholder="Subject *"
-            className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
-            {...register("subject", { required: true })}
-          />
-          <textarea
-            rows="5"
-            placeholder="Your message"
-            className="w-full border border-gray-500 focus:border-green-500 focus:outline-none px-4 py-2 rounded-md shadow-sm"
-            {...register("message", { required: true })}
-          />
-          <button
-            type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300 relative group w-full"
-          >
-            <span className="relative z-10">Send Message</span>
-            <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
-          </button>
-        </form>
-      </div>
+            <button className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-md font-semibold hover:from-green-600 hover:to-green-700 transition shadow-lg hover:scale-105">
+              Send Message
+            </button>
+          </motion.form>
+        </motion.div>
 
-      <div className="mt-10">
-        <ButtomSlider />
+        {/* Map Section */}
+        <motion.div
+          className="mt-16 rounded-2xl overflow-hidden shadow-lg"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <iframe
+            title="office-location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.123456!2d90.123456!3d22.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDA3JzAwLjAiTiA5MMKwMDInMzAuMCJF!5e0!3m2!1sen!2sbd!4v1692456789012!5m2!1sen!2sbd"
+            width="100%"
+            height="300"
+            className="border-0"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </motion.div>
+
+        {/* Bottom Slider */}
+        <motion.div
+          className="mt-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <ButtomSlider />
+        </motion.div>
       </div>
     </div>
   );
