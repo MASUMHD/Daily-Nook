@@ -18,6 +18,7 @@ import Customers from "../Dashboard/DasComponents/Customers";
 import Buyer from "../Dashboard/DasComponents/Buyer";
 import FruitsAndVegetables from "../Pages/FruitsAndVegetables";
 import Beverages from "../Pages/Beverages";
+import WorkInProgress from "../Dashboard/DasComponents/WorkInProgress";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,18 @@ export const router = createBrowserRouter([
       {
         path: "/beverages",
         element: <Beverages />
+      },
+      {
+        path: "/trending",
+        element: <WorkInProgress />
+      },
+      {
+        path: "/almost-finished",
+        element: <WorkInProgress />
+      },
+      {
+        path: "/wishlist",
+        element: <WorkInProgress />
       }
     ],
   },
@@ -94,6 +107,58 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/buyer",
         element: <Buyer />,
+      },
+      {
+        path: "/dashboard/orders",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/invoices",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/chats",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/settings",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/email",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/todo",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/faq",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/users",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/auth",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/errors",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/settings",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "/dashboard/pricing",
+        element: <WorkInProgress />
       }
     ],
   },

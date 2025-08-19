@@ -6,12 +6,13 @@ import {
   FiSmile,
   FiX,
 } from "react-icons/fi";
+import { Clock, ShoppingCart, Edit, MessageSquare } from "lucide-react";
 
 const DasHome = () => {
   const [showPopup, setShowPopup] = useState(true);
 
   return (
-    <div className="mt-14 p-6 bg-gray-100 min-h-screen relative">
+    <div className="pt-16 md:pt-20 px-6 relative ">
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl p-8 shadow-lg mb-10">
         <h1 className="text-3xl md:text-4xl font-bold">
@@ -31,6 +32,7 @@ const DasHome = () => {
             <p className="text-2xl font-bold text-gray-800 mt-1">1,234</p>
           </div>
         </div>
+
         <div className="bg-white shadow rounded-lg p-6 flex items-center gap-4 hover:scale-105 transform transition duration-300">
           <FiShoppingCart className="text-3xl text-green-500" />
           <div>
@@ -38,6 +40,7 @@ const DasHome = () => {
             <p className="text-2xl font-bold text-gray-800 mt-1">567</p>
           </div>
         </div>
+
         <div className="bg-white shadow rounded-lg p-6 flex items-center gap-4 hover:scale-105 transform transition duration-300">
           <FiDollarSign className="text-3xl text-yellow-500" />
           <div>
@@ -47,7 +50,54 @@ const DasHome = () => {
         </div>
       </div>
 
-      
+      {/* Recent Activities */}
+      <div className="bg-white shadow-lg rounded-2xl p-6 mt-6 border border-gray-100">
+        <h2 className="text-2xl font-semibold mb-5 text-gray-800 flex items-center gap-2">
+          <Clock className="w-6 h-6 text-indigo-500" /> Recent Activities
+        </h2>
+
+        <ul className="space-y-4">
+          {/* Activity Item */}
+          <li className="flex justify-between items-center p-3 rounded-xl hover:bg-gray-50 transition">
+            <div className="flex items-center gap-3">
+              <div className="bg-indigo-100 p-2 rounded-full">
+                <ShoppingCart className="w-5 h-5 text-indigo-600" />
+              </div>
+              <span className="text-gray-700 font-medium">
+                User <span className="font-semibold">JohnDoe</span> placed an
+                order
+              </span>
+            </div>
+            <span className="text-sm text-gray-500">2 hours ago</span>
+          </li>
+
+          <li className="flex justify-between items-center p-3 rounded-xl hover:bg-gray-50 transition">
+            <div className="flex items-center gap-3">
+              <div className="bg-green-100 p-2 rounded-full">
+                <Edit className="w-5 h-5 text-green-600" />
+              </div>
+              <span className="text-gray-700 font-medium">
+                Admin <span className="font-semibold">JaneDoe</span> updated
+                product details
+              </span>
+            </div>
+            <span className="text-sm text-gray-500">5 hours ago</span>
+          </li>
+
+          <li className="flex justify-between items-center p-3 rounded-xl hover:bg-gray-50 transition">
+            <div className="flex items-center gap-3">
+              <div className="bg-yellow-100 p-2 rounded-full">
+                <MessageSquare className="w-5 h-5 text-yellow-600" />
+              </div>
+              <span className="text-gray-700 font-medium">
+                User <span className="font-semibold">AliceSmith</span> left a
+                review
+              </span>
+            </div>
+            <span className="text-sm text-gray-500">1 day ago</span>
+          </li>
+        </ul>
+      </div>
 
       {/* Welcome Popup */}
       {showPopup && (

@@ -5,7 +5,7 @@ import { HiOutlineSearch } from 'react-icons/hi';
 
 const DasNavbar = ({ toggleSidebar }) => {
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-white shadow md:px-6 lg:px-10 fixed top-0 left-0 lg:left-60 right-0">
+    <div className="flex items-center justify-between px-4 py-3 bg-white shadow md:px-6 lg:px-10 fixed top-0 left-0 lg:left-60 right-0 z-10">
       {/* Sidebar toggle on small devices */}
       <button onClick={toggleSidebar} className="lg:hidden text-2xl text-gray-800">
         <FiMenu />
