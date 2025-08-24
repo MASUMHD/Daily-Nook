@@ -13,6 +13,7 @@ const FeaturedProducts = () => {
           </p>
         </div>
         <div>
+          {/* View All Button */}
           <button className="flex items-center gap-1 font-medium md:font-semibold  md:border border-gray-400 rounded-full px-3 py-[3px] hover:bg-[#634C9F] hover:text-white">
             <span>View All</span> <IoIosArrowRoundForward size={25} />
           </button>

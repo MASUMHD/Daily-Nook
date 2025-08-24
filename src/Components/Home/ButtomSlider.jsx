@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { motion } from 'framer-motion';
 
+// Items Data
 const items = [
   {
     img: "https://i.postimg.cc/8C7s0Nbs/SVG.png",
@@ -24,7 +25,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2, // stagger items
+      staggerChildren: 0.2, 
     },
   },
 };
@@ -40,9 +41,10 @@ const ButtomSlider = () => {
       className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white p-6 rounded-lg shadow-md mt-3"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }} // animate every time scroll into view
+      viewport={{ once: false, amount: 0.2 }} 
       variants={containerVariants}
     >
+      {/* Items */}
       {items.map((item, idx) => (
         <motion.div
           key={idx}

@@ -3,6 +3,7 @@ import useAuth from "./useAuth";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useCartItems = () => {
+  // Custom hook to fetch cart items for the authenticated user
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const email = user?.email;

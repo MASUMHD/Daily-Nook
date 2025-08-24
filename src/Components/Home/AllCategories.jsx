@@ -18,6 +18,7 @@ import { RiGalleryView2 } from "react-icons/ri";
 import { TbMeat } from "react-icons/tb";
 import { motion } from "framer-motion";
 
+// Categories Data
 const categories = [
   { name: "Fruits & Vegetables", icon: <CiApple /> },
   { name: "Meats & Seafood", icon: <TbMeat /> },
@@ -37,7 +38,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1, // Stagger list items
+      staggerChildren: 0.1,
     },
   },
 };

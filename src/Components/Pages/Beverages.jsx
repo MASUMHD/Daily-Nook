@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
+// Beverage items
 const beverages = [
   {
     id: 1,
@@ -73,6 +74,7 @@ const beverages = [
   },
 ];
 
+// Beverages component
 const Beverages = () => {
   const cardVariantsLeft = {
     hidden: { opacity: 0, x: -50 },
@@ -102,6 +104,31 @@ const Beverages = () => {
       transition: { duration: 0.5, ease: "easeOut" },
     },
   };
+
+  // Special Drinks Section
+  const Specials = [
+    {
+      title: "Fresh Juices",
+      emoji: "🥤",
+      color: "green",
+      desc: "Made with seasonal fruits, packed with vitamins and energy.",
+      button: "Order Now",
+    },
+    {
+      title: "Smoothies",
+      emoji: "🍓",
+      color: "pink",
+      desc: "Blended perfection of fruits, milk, and love in every sip.",
+      button: "Try Smoothie",
+    },
+    {
+      title: "Herbal Drinks",
+      emoji: "🌿",
+      color: "green",
+      desc: "Healthy herbal mixes to energize and keep you refreshed.",
+      button: "Discover More",
+    },
+  ];
 
   return (
     <div className="min-h-screen py-10 px-6 md:px-6 lg:px-28">
@@ -227,29 +254,7 @@ const Beverages = () => {
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Fresh Juices",
-              emoji: "🥤",
-              color: "green",
-              desc: "Made with seasonal fruits, packed with vitamins and energy.",
-              button: "Order Now",
-            },
-            {
-              title: "Smoothies",
-              emoji: "🍓",
-              color: "pink",
-              desc: "Blended perfection of fruits, milk, and love in every sip.",
-              button: "Try Smoothie",
-            },
-            {
-              title: "Herbal Drinks",
-              emoji: "🌿",
-              color: "yellow",
-              desc: "Healthy herbal mixes to energize and keep you refreshed.",
-              button: "Discover More",
-            },
-          ].map((item, index) => (
+          {Specials.map((item, index) => (
             <motion.div
               key={index}
               className={`bg-gradient-to-tr from-${item.color}-50 to-${item.color}-100 p-6 rounded-2xl shadow-lg border border-${item.color}-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300`}

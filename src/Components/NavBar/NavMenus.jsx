@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 
 const NavMenus = () => {
-  
 
+  // Generate link class based on active state
   const generateLinkClass = (isActive) =>
     `relative flex items-center gap-1 group px-2 py-1   
     ${isActive ? "text-[#634C9F]" : "text-black hover:text-[#634C9F]"} 

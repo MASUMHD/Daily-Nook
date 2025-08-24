@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 const Drinks = () => {
   const { products, isLoading, isError, error } = useProducts();
 
+  // Filter products by category
   const fruitProducts = products.filter(
     (product) => product.category?.toLowerCase() === "dairy"
   );
@@ -36,6 +37,7 @@ const Drinks = () => {
           </p>
         </div>
         <div>
+          {/* View All Button */}
           <Link to="/products">
             <button className="flex items-center gap-1 font-medium md:font-semibold md:border border-gray-400 rounded-full px-3 py-[3px] hover:bg-[#634C9F] hover:text-white">
               <span>View All</span> <IoIosArrowRoundForward size={25} />
@@ -59,9 +61,10 @@ const Drinks = () => {
         className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }} // animate every time scroll into view
+        viewport={{ once: false, amount: 0.2 }} 
         variants={containerVariants}
       >
+        {/* Products */}
         {fruitProducts.map((product) => (
           <motion.div key={product._id} variants={cardVariants}>
             <Card product={product} />

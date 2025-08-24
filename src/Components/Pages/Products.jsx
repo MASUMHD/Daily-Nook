@@ -12,7 +12,7 @@ const Products = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1, // delay between children
+        staggerChildren: 0.1, 
       },
     },
   };

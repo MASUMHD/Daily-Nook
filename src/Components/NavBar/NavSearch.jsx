@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 const NavSearch = () => {
   const [searchText, setSearchText] = useState("");
 
+  // Handle search functionality
   const handleSearch = () => {
     if (searchText.trim()) {
       Swal.fire({
